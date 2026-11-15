@@ -445,20 +445,6 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
     <form id="rsvp" novalidate>
       <input class="fld" type="text" id="r-name" name="name" placeholder="Tên của quý khách" autocomplete="name" required>
       <textarea class="fld" name="message" placeholder="Gửi lời chúc phúc đến cô dâu chú rể"></textarea>
-      <div class="sel"><select class="fld" name="attend" required>
-        <option value="" disabled selected>Quý khách sẽ đến chung vui chứ?</option>
-        <option>Có, mình sẽ tham dự</option>
-        <option>Rất tiếc, mình bận</option>
-      </select></div>
-      <div class="sel"><select class="fld" name="guests">
-        <option value="" disabled selected>Quý khách sẽ tham dự cùng ai</option>
-        <option value="1">1 mình</option><option value="2">2 người</option><option value="3">3 người</option>
-        <option value="4">4 người</option><option value="5+">5 người trở lên</option>
-      </select></div>
-      <div class="sel"><select class="fld" name="side">
-        <option value="" disabled selected>Quý khách là khách mời của?</option>
-        <option>Chú rể Đức Doanh</option><option>Cô dâu Huyền Trang</option><option>Cả hai</option>
-      </select></div>
       <button class="btn-o" type="submit" id="r-submit">Xác nhận</button>
       <button class="btn-o" type="button" id="gift-btn" hidden>Mừng cưới</button>
     </form>
@@ -737,10 +723,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
     e.preventDefault();
     var f = form.elements, name = f.name.value.trim();
     if (!name) { f.name.focus(); return; }
-    if (!f.attend.value) { f.attend.focus(); return; }
-    var going = f.attend.value.indexOf('Rất tiếc') !== 0;
-    var data = { name: name, message: f.message.value.trim(), attend: f.attend.value,
-                 guests: going ? (f.guests.value || '1') : '0', side: f.side.value, at: new Date().toISOString() };
+    var data = { name: name, message: f.message.value.trim(), side: SIDE === 'gai' ? 'Nhà gái' : 'Nhà trai', at: new Date().toISOString() };
     try { var a = JSON.parse(localStorage.getItem('rsvp') || '[]'); a.push(data); localStorage.setItem('rsvp', JSON.stringify(a)); } catch (_) {}
     var btn = $('#r-submit');
     if (CONFIG.rsvpEndpoint) {
@@ -750,8 +733,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
         .catch(function () { btn.disabled = false; showNote('Gửi chưa được, bạn thử lại sau nhé.'); });
       return;
     }
-    var text = 'Mình là ' + name + ' — ' + data.attend + (going ? ' (' + data.guests + ' người)' : '') +
-      (data.message ? '. ' + data.message : '') + '. Chúc Đức Doanh & Huyền Trang trăm năm hạnh phúc!';
+    var text = 'Mình là ' + name + (data.message ? '. ' + data.message : '') + '. Chúc Đức Doanh & Huyền Trang trăm năm hạnh phúc!';
     if (navigator.share) { navigator.share({ text: text }).catch(function () {}); }
     else if (navigator.clipboard) { navigator.clipboard.writeText(text).then(function () { showNote('Đã sao chép lời nhắn. Bạn dán gửi cho Doanh hoặc Trang qua Zalo nhé ♥'); }); }
     else { showNote(text); }
