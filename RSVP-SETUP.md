@@ -3,7 +3,7 @@
 Trang tĩnh thuần HTML/CSS/JS, không cần build. Deploy cả thư mục `thiep-cuoi/` (bỏ qua `_old-cinelove/` nếu muốn nhẹ).
 
 ## Cá nhân hoá link cho từng khách
-- `https://<domain>/?to=Anh Nam & gia đình` → hiện tên khách ở trang bìa + dòng "Trân trọng kính mời" (không có `?to=` thì hiện "Quý khách").
+- `https://<domain>/?to=Anh Nam & gia đình` → hiện tên khách ở trang bìa + dòng "Trân trọng kính mời" (không có `?to=` thì hiện "Quý khách"; luôn thêm " & người thương" sau tên).
 - Thêm `&gio=11:00&ngay=28` để đổi giờ/ngày bữa cơm thân mật (mặc định 15:00, ngày 29). Âm lịch tự tính (ngày 10–30/11).
 
 ## Nhạc nền
