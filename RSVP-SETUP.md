@@ -38,5 +38,5 @@ function doPost(e) {
 
 - Nhà trai (mặc định): `https://doanhdd0210.github.io/thiep-cuoi/?to=Tên khách`
 - Nhà gái: `https://doanhdd0210.github.io/thiep-cuoi/gai/?to=Tên khách` (hoặc `...?ben=gai&to=Tên khách`)
-- Nội dung từng bên (lễ chính, địa điểm, giờ, các lễ trong "Lịch trình" gom theo ngày) sửa trong `CONFIG.sides.trai` / `CONFIG.sides.gai` ở `index.html`.
+- Nội dung từng bên (lễ chính, địa điểm, giờ, lễ nổi bật) sửa trong `CONFIG.sides`; danh sách lễ trong "Lịch trình" (gom theo ngày, cả hai bản giống nhau) sửa ở `CONFIG.events` ở `index.html`.
 - Bản nhà gái đảo thứ tự "Nhà Gái" lên trước ở phần bố mẹ hai họ, đếm ngược theo giờ Lễ Vu Quy.

@@ -503,21 +503,20 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
     // HAI BẢN THIỆP: mặc định là nhà trai; thêm ?ben=gai để ra bản nhà gái (xem RSVP-SETUP.md).
     // Mỗi bên có: lễ chính (giờ/ngày/địa điểm ở phần lời mời, đếm ngược) và các lễ hiện trong "Lịch trình" (gom theo ngày).
     // icon: 'party' | 'rings' | 'clock' | 'glass' | 'dish'
+    // Cả hai bản đều hiện đủ 3 lễ (gom theo ngày); "main" = lễ nổi bật theo từng bên.
+    events: [
+      { name: 'Lễ ăn hỏi',    date: '2026-11-28', time: '07:15', place: 'Tư gia nhà gái',  addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình',  map: MAP_GAI,  icon: 'party' },
+      { name: 'Lễ vu quy',    date: '2026-11-29', time: '13:45', place: 'Tư gia nhà gái',  addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình',  map: MAP_GAI,  icon: 'glass' },
+      { name: 'Lễ thành hôn', date: '2026-11-29', time: '15:15', place: 'Tư gia nhà trai', addr: 'TDP 2, Phường Liêm Tuyền, Tỉnh Ninh Bình', map: MAP_TRAI, icon: 'rings' }
+    ],
     sides: {
       trai: {
-        weddingDate: '2026-11-29T15:15:00+07:00', time: '15:15', day: 29,
-        label: 'Lễ Thành Hôn', venue: 'Tư gia nhà trai', addr: 'TDP 2 - Phường Liêm Tuyền,<br>Tỉnh Ninh Bình', map: MAP_TRAI,
-        events: [
-          { name: 'Lễ thành hôn', date: '2026-11-29', time: '15:15', place: 'Tư gia nhà trai', addr: 'TDP 2, Phường Liêm Tuyền, Tỉnh Ninh Bình', map: MAP_TRAI, icon: 'rings', main: true }
-        ]
+        weddingDate: '2026-11-29T15:15:00+07:00', time: '15:15', day: 29, main: 'Lễ thành hôn',
+        label: 'Lễ Thành Hôn', venue: 'Tư gia nhà trai', addr: 'TDP 2 - Phường Liêm Tuyền,<br>Tỉnh Ninh Bình', map: MAP_TRAI
       },
       gai: {
-        weddingDate: '2026-11-29T13:45:00+07:00', time: '13:45', day: 29,
-        label: 'Lễ Vu Quy', venue: 'Tư gia nhà gái', addr: 'Xóm 4, Thôn 2, Xã Bình Lục,<br>Tỉnh Ninh Bình', map: MAP_GAI,
-        events: [
-          { name: 'Lễ ăn hỏi', date: '2026-11-28', time: '07:15', place: 'Tư gia nhà gái', addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình', map: MAP_GAI, icon: 'party' },
-          { name: 'Lễ vu quy', date: '2026-11-29', time: '13:45', place: 'Tư gia nhà gái', addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình', map: MAP_GAI, icon: 'glass', main: true }
-        ]
+        weddingDate: '2026-11-29T13:45:00+07:00', time: '13:45', day: 29, main: 'Lễ vu quy',
+        label: 'Lễ Vu Quy', venue: 'Tư gia nhà gái', addr: 'Xóm 4, Thôn 2, Xã Bình Lục,<br>Tỉnh Ninh Bình', map: MAP_GAI
       }
     },
     // Link nhận RSVP (Google Apps Script Web App / Formspree…). Xem RSVP-SETUP.md.
@@ -592,7 +591,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
     glass: '<path d="M14 12h12l-1 14a5 5 0 0 1-10 0l-1-14zM20 31v14M14 45h12M32 12h12l-1 14a5 5 0 0 1-10 0l-1-14zM38 31v14M32 45h12"/>',
     dish: '<path d="M8 38h40M12 38c0-9 7-16 16-16s16 7 16 16M28 22v-4M24 18h8M6 44h44"/>'
   };
-  var tl = $('#tl'), ev = S.events || [], lastDay = '';
+  var tl = $('#tl'), ev = CONFIG.events || [], lastDay = '';
   if (!ev.length) $('#sch-sec').hidden = true;
   ev.forEach(function (e) {
     var ymd = e.date.split('-'), dt = new Date(+ymd[0], +ymd[1] - 1, +ymd[2]);
@@ -603,7 +602,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
       $('span', h).textContent = WD[dt.getDay()] + ' · ' + p2(dt.getDate()) + '/' + p2(dt.getMonth() + 1) + '/' + dt.getFullYear();
       tl.appendChild(h);
     }
-    var d = document.createElement('div'); d.className = 'it' + (e.main ? ' main' : '');
+    var d = document.createElement('div'); d.className = 'it' + (e.name === S.main ? ' main' : '');
     d.innerHTML = '<svg class="ic" viewBox="0 0 56 56">' + (ICONS[e.icon] || ICONS.rings) + '</svg><div class="ln"></div>' +
       '<div class="tx"><div class="tm"></div><div class="lb"></div><div class="sub s2"></div><a class="mp" target="_blank" rel="noopener">Chỉ đường</a></div>';
     $('.tm', d).textContent = e.time; $('.lb', d).textContent = e.name;
