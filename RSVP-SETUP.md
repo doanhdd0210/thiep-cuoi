@@ -3,7 +3,7 @@
 Trang tĩnh thuần HTML/CSS/JS, không cần build. Deploy cả thư mục `thiep-cuoi/` (bỏ qua `_old-cinelove/` nếu muốn nhẹ).
 
 ## Cá nhân hoá link cho từng khách
-- `https://<domain>/?to=Anh Nam & gia đình` → hiện tên khách ở trang bìa + dòng "Trân trọng kính mời" (không có `?to=` thì hiện "Bạn & người thương").
+- `https://<domain>/?to=Anh Nam & gia đình` → hiện tên khách ở trang bìa + dòng "Trân trọng kính mời" (không có `?to=` thì hiện "Quý khách").
 - Thêm `&gio=11:00&ngay=28` để đổi giờ/ngày bữa cơm thân mật (mặc định 15:00, ngày 29). Âm lịch tự tính (ngày 10–30/11).
 
 ## Nhạc nền
@@ -26,7 +26,7 @@ function doPost(e) {
 Điền `bank` + `number` (và `qr` nếu có ảnh QR trong `img/`) trong `CONFIG.gifts` → nút "Mừng cưới" + popup tự hiện (đang ẩn vì chưa có số tài khoản).
 
 ## Timeline / Dresscode
-`CONFIG.events` (đang có Lễ ăn hỏi 28/11 07:15, Lễ vu quy 29/11 13:45, Lễ thành hôn 29/11 15:15; icon: party, rings, clock, glass, dish) và `CONFIG.dressCode` (mã màu, đang trống = ẩn) ở đầu phần `<script>` của `index.html`.
+`CONFIG.events` (đang có Lễ ăn hỏi 28/11 07:30, Tiệc chính 17:00, Chung vui âm nhạc 19:00–22:00, Lễ vu quy 29/11 13:30, Lễ thành hôn 29/11 15:15; icon: party, rings, clock, glass, music, dish) và `CONFIG.dressCode` (mã màu, đang trống = ẩn) ở đầu phần `<script>` của `index.html`.
 
 ## Phiên bản cũ
 `_old-cinelove/` chứa thiệp CineLove cũ, bản nâu đỏ theo mẫu in (`index-maroon-card.html`) và bản xanh olive (`index-green-lami.html`). Muốn chạy thì copy ra thư mục gốc đổi tên `index.html`.
