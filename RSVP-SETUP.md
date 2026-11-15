@@ -33,3 +33,10 @@ function doPost(e) {
 
 ## Ảnh xem trước khi share Zalo/Facebook
 Đổi `og:image` trong `<head>` thành link tuyệt đối `https://<domain>/img/og.jpg`.
+
+## Hai bản thiệp: nhà trai / nhà gái
+
+- Nhà trai (mặc định): `https://doanhdd0210.github.io/thiep-cuoi/?to=Tên khách`
+- Nhà gái: `https://doanhdd0210.github.io/thiep-cuoi/gai/?to=Tên khách` (hoặc `...?ben=gai&to=Tên khách`)
+- Nội dung từng bên (lễ chính, địa điểm, giờ, các lễ trong "Lịch trình" gom theo ngày) sửa trong `CONFIG.sides.trai` / `CONFIG.sides.gai` ở `index.html`.
+- Bản nhà gái đảo thứ tự "Nhà Gái" lên trước ở phần bố mẹ hai họ, đếm ngược theo giờ Lễ Vu Quy.
