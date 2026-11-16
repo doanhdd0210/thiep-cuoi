@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <base href="../../">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Thiệp mời Liên &amp; người thương · Đức Doanh &amp; Huyền Trang</title>
+<title>Thiệp mời Liên &amp; người thương · Huyền Trang &amp; Đức Doanh</title>
 <meta name="description" content="Trân trọng kính mời bạn đến dự Lễ Vu Quy của Huyền Trang &amp; Đức Doanh — 13 giờ 30, 29.11.2026, Ninh Bình.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Thiệp mời Liên &amp; người thương · Đức Doanh &amp; Huyền Trang">
+<meta property="og:title" content="Thiệp mời Liên &amp; người thương · Huyền Trang &amp; Đức Doanh">
 <meta property="og:description" content="Lễ Vu Quy · 13 giờ 30 · 29.11.2026 · Ninh Bình">
 <meta property="og:url" content="https://doanhdd0210.github.io/thiep-cuoi/gai/lien/">
 <meta property="og:image" content="https://doanhdd0210.github.io/thiep-cuoi/img/og.jpg">
@@ -470,7 +470,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
       <p>Cảm ơn bạn đã dành tình cảm cho chúng mình!<br>Sự hiện diện của bạn chính là món quà ý nghĩa nhất, và chúng mình vô cùng trân quý khi được cùng bạn chia sẻ niềm hạnh phúc trong ngày trọng đại này.</p>
     </div>
   </section>
-  <footer>Đức Doanh &amp; Huyền Trang · 29.11.2026</footer>
+  <footer>Huyền Trang &amp; Đức Doanh · 29.11.2026</footer>
 </main>
 
 <div id="lb" role="dialog" aria-label="Xem ảnh">
@@ -545,6 +545,13 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
   var SIDE = /^(gai|nhagai|bride)$/i.test(PRE.side || q.get('ben') || q.get('side') || '') ? 'gai' : 'trai';
   var S = CONFIG.sides[SIDE];
   html.classList.add('side-' + SIDE);
+  if (SIDE === 'gai') {   // nhà gái: Huyền Trang đứng trước Đức Doanh
+    $('.big .n1').textContent = 'Huyền Trang'; $('.big .n2').textContent = 'Đức Doanh';
+    var _ft = $('footer'); if (_ft) _ft.innerHTML = 'Huyền Trang &amp; Đức Doanh · 29.11.2026';
+    var _sr = document.querySelectorAll('.story .srow');
+    if (_sr.length === 2) { _sr[0].parentNode.insertBefore(_sr[1], _sr[0]); _sr[1].classList.add('rev'); _sr[0].classList.remove('rev'); }
+    document.title = document.title.replace('Đức Doanh & Huyền Trang', 'Huyền Trang & Đức Doanh');
+  }
   $('#v-label').textContent = S.label + ' được tổ chức tại';
   $('#v-name').textContent = S.venue;
   $('#v-addr').innerHTML = S.addr;
@@ -767,7 +774,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
         .catch(function () { btn.disabled = false; showNote('Gửi chưa được, bạn thử lại sau nhé.'); });
       return;
     }
-    var text = 'Mình là ' + name + (data.message ? '. ' + data.message : '') + '. Chúc Đức Doanh & Huyền Trang trăm năm hạnh phúc!';
+    var text = 'Mình là ' + name + (data.message ? '. ' + data.message : '') + '. Chúc Huyền Trang & Đức Doanh trăm năm hạnh phúc!';
     if (navigator.share) { navigator.share({ text: text }).catch(function () {}); }
     else if (navigator.clipboard) { navigator.clipboard.writeText(text).then(function () { showNote('Đã sao chép lời nhắn. Bạn dán gửi cho Doanh hoặc Trang qua Zalo nhé ♥'); }); }
     else { showNote(text); }

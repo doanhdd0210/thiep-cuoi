@@ -543,6 +543,13 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
   var SIDE = /^(gai|nhagai|bride)$/i.test(PRE.side || q.get('ben') || q.get('side') || '') ? 'gai' : 'trai';
   var S = CONFIG.sides[SIDE];
   html.classList.add('side-' + SIDE);
+  if (SIDE === 'gai') {   // nhà gái: Huyền Trang đứng trước Đức Doanh
+    $('.big .n1').textContent = 'Huyền Trang'; $('.big .n2').textContent = 'Đức Doanh';
+    var _ft = $('footer'); if (_ft) _ft.innerHTML = 'Huyền Trang &amp; Đức Doanh · 29.11.2026';
+    var _sr = document.querySelectorAll('.story .srow');
+    if (_sr.length === 2) { _sr[0].parentNode.insertBefore(_sr[1], _sr[0]); _sr[1].classList.add('rev'); _sr[0].classList.remove('rev'); }
+    document.title = document.title.replace('Đức Doanh & Huyền Trang', 'Huyền Trang & Đức Doanh');
+  }
   $('#v-label').textContent = S.label + ' được tổ chức tại';
   $('#v-name').textContent = S.venue;
   $('#v-addr').innerHTML = S.addr;

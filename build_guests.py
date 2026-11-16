@@ -29,8 +29,8 @@ def render(tpl, rel, guest, url):
     pre = '<script>window.THIEP=%s;</script>\n<script>\n(function' % ('{side:"gai"' + (',guest:%s' % __import__('json').dumps(guest, ensure_ascii=False) if guest else '') + '}')
     assert '<script>\n(function' in h
     h = h.replace('<script>\n(function', pre, 1)
-    title = 'Thiệp mời Lễ Vu Quy · Đức Doanh &amp; Huyền Trang'
-    if guest: title = 'Thiệp mời %s &amp; người thương · Đức Doanh &amp; Huyền Trang' % html.escape(guest)
+    title = 'Thiệp mời Lễ Vu Quy · Huyền Trang &amp; Đức Doanh'
+    if guest: title = 'Thiệp mời %s &amp; người thương · Huyền Trang &amp; Đức Doanh' % html.escape(guest)
     h = re.sub(r'<title>.*?</title>', '<title>%s</title>' % title, h, 1)
     h = re.sub(r'(<meta property="og:title" content=")[^"]*', r'\g<1>' + title, h, 1)
     h = re.sub(r'(<meta property="og:description" content=")[^"]*', r'\g<1>Lễ Vu Quy · 13 giờ 30 · 29.11.2026 · Ninh Bình', h, 1)
