@@ -541,7 +541,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
   /* ---------- Tham số trên link ---------- */
   var q = new URLSearchParams(location.search);
   var PRE = window.THIEP || {};                    // trang dựng sẵn cho từng khách (xem build_guests.py)
-  var guest = (PRE.guest || q.get('to') || q.get('ten') || '').trim().slice(0, 60);
+  var guest = (q.get('to') || q.get('ten') || PRE.guest || '').trim().slice(0, 60);   // ?to= ghi đè tên dựng sẵn
   var SIDE = /^(gai|nhagai|bride)$/i.test(PRE.side || q.get('ben') || q.get('side') || '') ? 'gai' : 'trai';
   var S = CONFIG.sides[SIDE];
   html.classList.add('side-' + SIDE);
