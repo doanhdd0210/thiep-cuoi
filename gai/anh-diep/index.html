@@ -506,7 +506,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
       { name: 'Lễ ăn hỏi',         date: '2026-11-28', time: '07:30',         place: 'Tư gia nhà gái',  addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình',  map: MAP_GAI,  icon: 'party' },
       { name: 'Tiệc chính',        date: '2026-11-28', time: '17:00',         place: 'Tư gia nhà gái',  addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình',  map: MAP_GAI,  icon: 'dish' },
       { name: 'Chung vui âm nhạc', date: '2026-11-28', time: '19:00 – 22:00', place: 'Tư gia nhà gái',  addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình',  map: MAP_GAI,  icon: 'music' },
-      { name: 'Tiệc',              date: '2026-11-29', time: '10:00',         place: 'Tư gia nhà trai', addr: 'TDP 2, Phường Liêm Tuyền, Tỉnh Ninh Bình', map: MAP_TRAI, icon: 'dish' },
+      { name: 'Tiệc',              date: '2026-11-29', time: '10:00',         only: 'trai', place: 'Tư gia nhà trai', addr: 'TDP 2, Phường Liêm Tuyền, Tỉnh Ninh Bình', map: MAP_TRAI, icon: 'dish' },
       { name: 'Lễ vu quy',         date: '2026-11-29', time: '13:30',         place: 'Tư gia nhà gái',  addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình',  map: MAP_GAI,  icon: 'glass' },
       { name: 'Lễ thành hôn',      date: '2026-11-29', time: '15:15',         place: 'Tư gia nhà trai', addr: 'TDP 2, Phường Liêm Tuyền, Tỉnh Ninh Bình', map: MAP_TRAI, icon: 'rings' }
     ],
@@ -544,6 +544,13 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
   var guest = (q.get('to') || q.get('ten') || PRE.guest || '').trim().slice(0, 60);   // ?to= ghi đè tên dựng sẵn
   var SIDE = /^(gai|nhagai|bride)$/i.test(PRE.side || q.get('ben') || q.get('side') || '') ? 'gai' : 'trai';
   var S = CONFIG.sides[SIDE];
+  // Tiệc chính của từng khách: ?ngay=28&gio=10:00 -> sửa ngày/giờ bữa tiệc, lịch trình + đếm ngược đổi theo
+  var MEAL = SIDE === 'gai' ? 'Tiệc chính' : 'Tiệc';
+  var CUSTOM = !!(q.get('gio') || q.get('time') || q.get('ngay') || q.get('day'));
+  var _me = (CONFIG.events || []).filter(function (e) { return e.name === MEAL; })[0];
+  if (CUSTOM && _me) {
+    S = Object.assign({}, S, { label: SIDE === 'gai' ? 'Tiệc Chính' : 'Tiệc Cưới', main: MEAL, day: +_me.date.slice(8), time: _me.time.split('–')[0].trim() });
+  } else CUSTOM = false;
   html.classList.add('side-' + SIDE);
   if (SIDE === 'gai') {   // nhà gái: Huyền Trang đứng trước Đức Doanh
     $('.big .n1').textContent = 'Huyền Trang'; $('.big .n2').textContent = 'Đức Doanh';
@@ -561,6 +568,11 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
   if (!(dayNum >= 10 && dayNum <= 30)) dayNum = S.day;
   var tm = /^(\d{1,2})[:h.](\d{1,2})?$/.exec(timeStr) || /^(\d{1,2})$/.exec(timeStr);
   var hh = tm ? Math.min(23, +tm[1]) : 15, mm = tm && tm[2] ? Math.min(59, +tm[2]) : 0;
+  if (CUSTOM) {
+    _me.date = '2026-11-' + p2(dayNum); _me.time = p2(hh) + ':' + p2(mm);
+    S.weddingDate = _me.date + 'T' + _me.time + ':00+07:00';
+    CONFIG.events.sort(function (a, b) { return (a.date + ' ' + a.time.split('–')[0].trim().padStart(5, '0')).localeCompare(b.date + ' ' + b.time.split('–')[0].trim().padStart(5, '0')); });
+  }
   var WD = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
   $('#d-time').textContent = p2(hh) + ':' + p2(mm);
   $('#d-date').textContent = p2(dayNum) + '.11.2026';
@@ -602,7 +614,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
     music: '<path d="M22 40V14l22-5v26"/><circle cx="15" cy="41" r="7"/><circle cx="37" cy="36" r="7"/>',
     dish: '<path d="M8 38h40M12 38c0-9 7-16 16-16s16 7 16 16M28 22v-4M24 18h8M6 44h44"/>'
   };
-  var tl = $('#tl'), ev = CONFIG.events || [], lastDay = '';
+  var tl = $('#tl'), ev = (CONFIG.events || []).filter(function (e) { return !e.only || e.only === SIDE; }), lastDay = '';
   if (!ev.length) $('#sch-sec').hidden = true;
   ev.forEach(function (e) {
     var ymd = e.date.split('-'), dt = new Date(+ymd[0], +ymd[1] - 1, +ymd[2]);

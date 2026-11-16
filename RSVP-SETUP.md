@@ -4,7 +4,8 @@ Trang tĩnh thuần HTML/CSS/JS, không cần build. Deploy cả thư mục `thi
 
 ## Cá nhân hoá link cho từng khách
 - `https://<domain>/?to=Anh Nam & gia đình` → hiện tên khách ở trang bìa + dòng "Trân trọng kính mời" (không có `?to=` thì hiện "Quý khách"; luôn thêm " & người thương" sau tên).
-- Thêm `&gio=11:00&ngay=28` để đổi giờ/ngày bữa cơm thân mật (mặc định 15:00, ngày 29). Âm lịch tự tính (ngày 10–30/11).
+- Thêm `&gio=10:00&ngay=28` để đổi **tiệc chính của riêng khách đó** (nhà trai: mục "Tiệc", mặc định 29/11 10:00; nhà gái: mục "Tiệc chính", mặc định 28/11 17:00). Dòng lời mời, đếm ngược và lịch trình đều đổi theo, mục tiệc tự chuyển sang đúng ngày/giờ và được tô đậm. Không có `gio`/`ngay` thì giữ nguyên mặc định. Âm lịch tự tính (ngày 10–30/11).
+- Mục "Tiệc" của nhà trai (10:00 ngày 29) chỉ hiện ở bản nhà trai, bản nhà gái không hiện (cờ `only: 'trai'` trong `CONFIG.events`).
 
 ## Nhạc nền
 `music.mp3` (cạnh `index.html`) đang là nhạc cắt từ video mẫu, phát khi khách bấm mở thiệp. Muốn đổi bài thì thay file này, nhớ dùng nhạc bạn có bản quyền.
