@@ -504,7 +504,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
       { name: 'Lễ ăn hỏi',         date: '2026-11-28', time: '07:30',         only: 'gai', place: 'Tư gia nhà gái',  addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình',  map: MAP_GAI,  icon: 'party' },
       { name: 'Tiệc chính',        date: '2026-11-28', time: '17:00',         only: 'gai', place: 'Tư gia nhà gái',  addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình',  map: MAP_GAI,  icon: 'dish' },
       { name: 'Chung vui âm nhạc', date: '2026-11-28', time: '19:00 – 22:00', only: 'gai', place: 'Tư gia nhà gái',  addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình',  map: MAP_GAI,  icon: 'music' },
-      { name: 'Về nhà trai',       date: '2026-11-28', time: '09:00',         only: 'trai', place: 'Tư gia nhà trai', addr: 'TDP 2, Phường Liêm Tuyền, Tỉnh Ninh Bình', map: MAP_TRAI, icon: 'clock' },
+      { name: 'Chung vui âm nhạc', date: '2026-11-28', time: '19:00 – 22:00', only: 'trai', place: 'Tư gia nhà trai', addr: 'TDP 2, Phường Liêm Tuyền, Tỉnh Ninh Bình', map: MAP_TRAI, icon: 'music' },
       { name: 'Tiệc',              date: '2026-11-29', time: '10:00',         only: 'trai', place: 'Tư gia nhà trai', addr: 'TDP 2, Phường Liêm Tuyền, Tỉnh Ninh Bình', map: MAP_TRAI, icon: 'dish' },
       { name: 'Lễ vu quy',         date: '2026-11-29', time: '13:30',         place: 'Tư gia nhà gái',  addr: 'Xóm 4, Thôn 2, Xã Bình Lục, tỉnh Ninh Bình',  map: MAP_GAI,  icon: 'glass' },
       { name: 'Lễ thành hôn',      date: '2026-11-29', time: '15:15',         place: 'Tư gia nhà trai', addr: 'TDP 2, Phường Liêm Tuyền, Tỉnh Ninh Bình', map: MAP_TRAI, icon: 'rings' }
@@ -577,7 +577,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
   $('#d-date').textContent = p2(dayNum) + '.11.2026';
   $('#d-wd').textContent = WD[new Date(2026, 10, dayNum).getDay()];
   $('#d-lunar').textContent = p2(dayNum - 8); // 29/11/2026 = 21/10 âm lịch
-  var hasPlus = /&|(^|\s)và(\s|$)|người thương|gia đình|cả nhà|cùng/i.test(guest);   // tên đã tự ghi kèm người đi cùng thì không thêm nữa
+  var hasPlus = /&|(^|\s)và(\s|$)|(^|\s)(vợ|chồng)(\s|$)|người thương|gia đình|cả nhà|cùng/i.test(guest);   // tên đã tự ghi kèm người đi cùng thì không thêm nữa
   $('#guest').textContent = (guest || 'Quý khách') + (guest && hasPlus ? '' : ' & người thương');
   if (guest) {
     $('#r-name').value = guest;
