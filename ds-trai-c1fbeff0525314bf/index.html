@@ -27,7 +27,7 @@ main{padding:10px 14px 60px;max-width:720px;margin:0 auto}
 .toast{z-index:30;position:fixed;left:50%;bottom:22px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:99px;transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
 </style></head><body>
 <header><h1>Link mời nhà trai</h1><div class="cnt"><b id="s">0</b> / <span id="t">0</span> đã gửi</div>
-<input id="q" type="search" placeholder="Tìm tên…" autocomplete="off"><div class="tabs" id="stt"></div><div class="tabs" id="tabs"></div></header>
+<input id="q" type="search" placeholder="Tìm tên…" autocomplete="off"><div class="tabs" id="stt"></div><div class="tabs" id="bulk"><button data-e="1">📅 Mời 2 ngày cho tất cả đang hiện</button><button data-e="0">Chỉ 1 ngày cho tất cả đang hiện</button></div><div class="tabs" id="tabs"></div></header>
 <main id="list"></main><div class="sheet" id="sheet"><h3 id="shT"></h3><textarea id="shX"></textarea><div class="sb"><button id="shC" class="pri">📋 Copy lời mời + link</button><button id="shR">🔄 Đổi lời</button><button id="shK">Đóng</button></div></div><div class="toast" id="toast"></div>
 <script>
 var G=[[1, "Anh em họ", "Em Hồng"], [2, "Bạn cấp 3", "Bạn Độ và vợ"], [3, "Bạn cấp 3", "Lệ Chi"], [4, "Bạn cấp 3", "Trịnh Công Son"], [5, "Bạn cấp 3", "Nguyễn Ánh"], [6, "Bạn cấp 3", "Vũ Hoàng Vũ"], [7, "Bạn cấp 3", "Ngô Xuân Thịnh"], [8, "Synodus", "Nguyễn Tiến Toàn"], [9, "Bạn cấp 3", "Ngô Mạnh Long"], [10, "Bạn cấp 3", "Hường Lã"], [11, "Trong thôn", "Ngô Xuân Trường"], [12, "Trong thôn", "Đoàn Trường"], [13, "Bạn cấp 3", "Dao Dinh Khải"], [14, "Bạn cấp 3", "Tiến Dũng"], [15, "Bạn cấp 3", "Nguyễn Đình Thuận"], [16, "Bạn cấp 3", "Trần Trung Hiếu"], [17, "Bạn cấp 3", "Đoàn Văn Lộc"], [18, "Trong thôn", "Do Quang Ha"], [19, "Bạn cấp 3", "Nguyễn Phúc Du"], [20, "Bạn cấp 3", "Trung Kiên"], [21, "Trong thôn", "Đỗ Quang Nam"], [22, "Bạn cấp 3", "Nguyễn Luân"], [23, "Bạn đại học", "Cảnh"], [24, "Anh em họ", "Phú Hiệp"], [25, "Synodus", "Nguyễn Thành Nam"], [26, "Bạn cấp 3", "Đào Minh Trí"], [27, "Bạn đại học", "Duy Vũ"], [28, "Trong thôn", "Nguyễn Ngọc TrườnG"], [29, "Bạn cấp 3", "Đ. V. MạnH"], [30, "Bạn cấp 3", "Quỳnh Laser"], [31, "Synodus", "Hoang Dinh"], [32, "Bạn cấp 3", "Kim Việt"], [33, "Bạn cấp 3", "Trần Đình Lượng"], [34, "Synodus", "Thúy Thương"], [35, "Trong thôn", "Nguyễn Gia Hiệp"], [36, "Trong thôn", "Xuân Tùng"], [37, "Trong thôn", "Hải Nguyễn"], [38, "Bạn đại học", "Hà Ngọc Lực"], [39, "Trong thôn", "Trần Đình Tiến"], [40, "Synodus", "Hưng Nguyễn"], [41, "Synodus", "Tô Văn Hưng"], [42, "Synodus", "Văn Nam"], [43, "Bạn đại học", "Nguyễn Đăng Bách"], [44, "Bạn đại học", "Dang Xuan Tùng"], [45, "Bạn đại học", "Khuất Minh"], [46, "Synodus", "Lưu Mạnh Quân"], [47, "Synodus", "Phạm Hải"], [48, "Bạn đại học", "Lê Phương"], [49, "Bạn cấp 3", "Nam Phạm"], [50, "Bạn cấp 3", "Mai Tuân Hưng"], [51, "Panasonic", "Phương Việt Hoàng"], [52, "Panasonic", "Phùng Đức Tuấn"], [53, "Trong thôn", "Thắng Nguyễn"], [54, "Synodus", "Nguyễn Thị Lan Anh"], [55, "Panasonic", "Bạn Quang"], [56, "Panasonic", "Anh Thương"], [57, "Panasonic", "Anh Thảo"], [58, "Panasonic", "Anh Thoả"], [59, "Panasonic", "Anh Sang"], [60, "Panasonic", "Anh Đạt"], [61, "Panasonic", "Anh Đức"], [62, "Panasonic", "Anh Đức Béo"], [63, "Panasonic", "Anh Thuật"], [64, "Panasonic", "Anh Lộc"], [65, "Panasonic", "Anh Hiểu"], [66, "Panasonic", "Anh Tùng"], [67, "Panasonic", "Anh Nam"], [68, "Panasonic", "Anh Nam Bé"], [69, "Panasonic", "Anh Duy"], [70, "Panasonic", "Anh Tùng (2)"], [71, "Panasonic", "Anh Được"], [72, "Panasonic", "Anh Phương"], [73, "Panasonic", "Em Vũ"], [74, "Panasonic", "Chị Nhung"], [75, "Panasonic", "Chị Thu"], [76, "Panasonic", "Anh Đắc"], [77, "Panasonic", "Anh Mạnh"], [78, "Panasonic", "Anh Thiện"], [79, "Panasonic", "Anh Hoàng"], [80, "Panasonic", "Anh Ngọc"], [81, "Panasonic", "Anh Tuân"], [82, "Anh em họ", "Em Thư"], [83, "Anh em họ", "Anh Hưng"], [84, "Anh em họ", "Anh Hiển"], [85, "Anh em họ", "Anh Hiếu"], [86, "Anh em họ", "Chị Loan"], [87, "Anh em họ", "Chị Linh"], [88, "Anh em họ", "Em Hiếu"], [89, "Bạn cấp 3", "Vân"], [90, "Synodus", "Thị Ánh"]];
@@ -60,16 +60,19 @@ var OPEN=["{A} ơi, tình hình là bố mẹ cho {S} đi xây dựng gia đình
 var MID=["{S} tổ chức tiệc cưới tại nhà trai (Ninh Bình) lúc {T} {D}, {Y} sắp xếp ghé ăn cỗ cùng gia đình {S} nhé.",
  "Tiệc cưới bắt đầu {T} {D} tại nhà trai, mong {Y} đến sớm một chút cho {S} còn đón.",
  "Lịch cụ thể: {T} {D}, dự tiệc cưới tại tư gia nhà trai, Ninh Bình."];
-var MIDE=["{E}, {Y} xuống chơi trước, ăn bữa cơm thân mật với gia đình {S}; hôm sau {D} lúc {T} dự tiệc cưới tại nhà trai (Ninh Bình).",
- "{Y} xuống từ {E} nhé, tối đó quây quần chơi cho vui, hôm sau {D} lúc {T} là tiệc cưới tại nhà trai.",
- "Lịch: {E} xuống chơi, rồi {D} lúc {T} dự tiệc cưới tại tư gia nhà trai, Ninh Bình."];
+var MIDE=["Trước ngày cưới, {E} {Y} ghé nhà {S} chơi, cơm nước tâm sự cho vui; hôm sau {D} lúc {T} là tiệc cưới chính thức tại nhà trai (Ninh Bình).",
+ "{S} mời {Y} hẳn 2 ngày luôn nè: {E} xuống chơi với {S}, quây quần ăn uống cho đã, hôm sau {D} lúc {T} dự tiệc cưới nhé.",
+ "{Y} xuống sớm từ {E} chơi với {S} một bữa cho vui, hôm sau {D} lúc {T} ở lại ăn cỗ cưới tại nhà trai nhé.",
+ "Mong {Y} dành trọn 2 ngày cho {S}: {E} dự bữa cơm thân mật cùng gia đình, rồi {D} lúc {T} dự tiệc cưới tại tư gia nhà trai, Ninh Bình.",
+ "Trước ngày cưới {S} có bữa tụ họp {E}, {Y} xuống chơi với {S} cho rôm rả nhé; chính thức tiệc cưới là {D} lúc {T}.",
+ "{E} {Y} ghé nhà {S} chơi trước cho vui, tối đó anh em quây quần, hôm sau {D} lúc {T} dự tiệc cưới tại nhà trai (Ninh Bình)."];
 var END=["Sự hiện diện của {Y} là niềm vinh dự của {S} và gia đình. Mong {Y} sắp xếp thời gian tới dự nhé. Trân trọng!",
  "Có {Y} tới là {S} vui lắm. Nhớ sắp xếp thời gian nha, {S} cảm ơn nhiều!",
  "Mong {Y} bớt chút thời gian ghé chung vui với {S} và gia đình. Trân trọng!",
  "Nếu tiện, {Y} cứ rủ thêm người thương đi cùng cho vui nhé. Trân trọng!"];
 function msg(r){var w=who(r),m=eff(r),o=opt[r[0]]||{},seed=r[0]*7919+(vr[r[0]]||0)*104729+13;
   var d=m.d,T=hh(m.t),D=dayL(d),E='tối '+dayL(d-1);
-  var mid=(o.e?MIDE:MID)[rnd(seed,2,3)];
+  var mid=o.e?MIDE[rnd(seed,2,MIDE.length)]:MID[rnd(seed,2,MID.length)];
   var txt=OPEN[rnd(seed,1,OPEN.length)]+' '+mid+'\n'+END[rnd(seed,3,END.length)];
   txt=txt.replace(/\{A\}/g,w.A).replace(/\{Y\}/g,w.Y).replace(/\{S\}/g,w.S).replace(/\{T\}/g,T).replace(/\{D\}/g,D).replace(/\{E\}/g,E);
   txt=txt.replace(/(^|[.!?]\s+|\n)(\p{Ll})/gu,function(_,a,b){return a+b.toUpperCase()});
@@ -80,6 +83,7 @@ function norm(s){return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,''
 function save(){try{localStorage.setItem(OK,JSON.stringify(opt));localStorage.setItem(VK,JSON.stringify(vr));localStorage.setItem(K,JSON.stringify(sent));localStorage.setItem(NK,JSON.stringify(names));localStorage.setItem(MK,JSON.stringify(meal))}catch(e){}}
 var tt;function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('show')},1600)}
 function copy(txt){(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){toast('Đã copy link')},function(){var a=document.createElement('textarea');a.value=txt;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();toast('Đã copy link')})}
+function vis(){var qq=norm(q.trim());return G.filter(function(r){return(f==='all'||r[1]===f)&&(st==='all'||(st==='yes')===!!sent[r[0]])&&(!qq||(norm(dn(r)).indexOf(qq)>=0||norm(r[2]).indexOf(qq)>=0))})}
 function render(){
   var n=G.filter(function(r){return sent[r[0]]}).length;$('s').textContent=n;$('t').textContent=G.length;
   var sb=$('stt');sb.textContent='';
@@ -88,16 +92,19 @@ function render(){
   ['all'].concat(groups).forEach(function(g){var b=document.createElement('button');b.dataset.f=g;if(g===f)b.className='on';
     var c=G.filter(function(r){return g==='all'||r[1]===g});b.textContent=(g==='all'?'Tất cả':g)+' '+c.filter(function(r){return sent[r[0]]}).length+'/'+c.length;tb.appendChild(b)});
   var l=$('list');l.textContent='';var qq=norm(q.trim());
-  G.filter(function(r){return(f==='all'||r[1]===f)&&(st==='all'||(st==='yes')===!!sent[r[0]])&&(!qq||(norm(dn(r)).indexOf(qq)>=0||norm(r[2]).indexOf(qq)>=0))}).forEach(function(r){
+  vis().forEach(function(r){
     var d=document.createElement('div');d.className='row'+(sent[r[0]]?' sent':'');d.dataset.id=r[0];
     d.innerHTML='<div class="n"></div><div class="g"></div><div class="b"><button data-a="c">🔗 Copy link</button><a target="_blank" rel="noopener">↗ Mở</a><button data-a="s"></button><button data-a="e">✎ Sửa tên</button><button data-a="m">🕒 Ngày giờ tiệc</button></div><div class="b"><button data-a="t"></button><button data-a="v"></button><button data-a="w" class="on">💬 Lời mời</button></div>';
     d.querySelector('.n').textContent=dn(r);d.querySelector('.g').textContent=r[1]+(dn(r)!==r[2]?' · gốc: '+r[2]:'')+(meal[r[0]]?' · tiệc '+meal[r[0]].d+'/11 lúc '+meal[r[0]].t:'');d.querySelector('a').href=lk(r);
-    var oo=opt[r[0]]||{},mm=eff(r);var bt=d.querySelector('[data-a=t]');bt.textContent='🍽 Tiệc '+hh(mm.t)+(mm.d!==29?' ngày '+mm.d:'')+' (đổi)';var bv=d.querySelector('[data-a=v]');bv.textContent=oo.e?'🌙 Có xuống chơi tối 28':'🌙 Tối 28: không';if(oo.e)bv.className='tg';
+    var oo=opt[r[0]]||{},mm=eff(r);var bt=d.querySelector('[data-a=t]');bt.textContent='🍽 Tiệc '+hh(mm.t)+(mm.d!==29?' ngày '+mm.d:'')+' (đổi)';var bv=d.querySelector('[data-a=v]');bv.textContent=oo.e?'📅 Mời 2 ngày (tối 28 + 29)':'📅 Mời 1 ngày (29)';if(oo.e)bv.className='tg';
     var s=d.querySelector('[data-a=s]');s.textContent=sent[r[0]]?'✓ Đã gửi':'Đánh dấu đã gửi';if(sent[r[0]])s.className='on';
     l.appendChild(d)})}
 $('list').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var id=+b.closest('.row').dataset.id;
   var r=G.filter(function(x){return x[0]===id})[0];
   if(b.dataset.a==='c')copy(lk(r));else if(b.dataset.a==='t'){var o=opt[id]||(opt[id]={});var cur=eff(r);o.t=(cur.t==='11:00'&&cur.d===29)?10:11;delete meal[id];save();render()}else if(b.dataset.a==='v'){var o2=opt[id]||(opt[id]={});o2.e=o2.e?0:1;save();render()}else if(b.dataset.a==='w'){openSheet(r)}else if(b.dataset.a==='e'){var v=prompt('Tên hiện trên thiệp (vd: "Tiến và bạn gái"). Để trống = về tên gốc "'+r[2]+'":',dn(r));if(v===null)return;v=v.trim();if(!v||v===r[2])delete names[id];else names[id]=v;save();render()}else if(b.dataset.a==='m'){var cur=meal[id]?meal[id].d+' '+meal[id].t:'';var s=prompt('Ngày giờ tiệc chính của người này (vd: 28 10:00 hoặc 29 15:00). Để trống = mặc định 29 10:00:',cur);if(s===null)return;if(!s.trim()){delete meal[id]}else{var pm=parseMeal(s);if(!pm){alert('Chưa đúng dạng. Gõ ngày rồi giờ, vd: 28 10:00');return}meal[id]=pm}save();render()}else{if(sent[id])delete sent[id];else sent[id]=1;save();render()}});
+$('bulk').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var v=+b.dataset.e,rows=vis();if(!rows.length)return toast('Không có ai');
+  if(!confirm((v?'Mời 2 ngày (tối 28 + 29)':'Chỉ mời 1 ngày (29)')+' cho '+rows.length+' người đang hiện?'))return;
+  rows.forEach(function(r){(opt[r[0]]||(opt[r[0]]={})).e=v});save();render();toast('Đã đặt cho '+rows.length+' người')});
 $('stt').addEventListener('click',function(e){var b=e.target.closest('button');if(b){st=b.dataset.st;render()}});
 $('tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b){f=b.dataset.f;render()}});
 $('q').addEventListener('input',function(e){q=e.target.value;render()});
