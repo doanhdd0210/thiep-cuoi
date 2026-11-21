@@ -578,7 +578,7 @@ footer{background:#262f19;color:rgba(255,255,255,.65);font-size:14px;text-align:
   $('#d-wd').textContent = WD[new Date(2026, 10, dayNum).getDay()];
   $('#d-lunar').textContent = p2(dayNum - 8); // 29/11/2026 = 21/10 âm lịch
   var hasPlus = /&|(^|\s)và(\s|$)|(^|\s)(vợ|chồng)(\s|$)|người thương|gia đình|cả nhà|cùng/i.test(guest);   // tên đã tự ghi kèm người đi cùng thì không thêm nữa
-  $('#guest').textContent = (guest || 'Quý khách') + (guest && hasPlus ? '' : ' & người thương');
+  $('#guest').textContent = (guest || 'Quý khách') + (guest && (hasPlus || SIDE === 'trai') ? '' : ' & người thương');   // nhà trai: có truyền tên thì giữ nguyên tên, không thêm
   if (guest) {
     $('#r-name').value = guest;
     var cg = $('#cv-guest'); cg.textContent = guest; cg.hidden = false;
